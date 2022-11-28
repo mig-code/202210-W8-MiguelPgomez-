@@ -9,7 +9,7 @@ export type tvShowsType = {
     emmies: number;
 };
 
-export const getseries = () => [
+export const moviesData = [
     {
         id: 1,
         name: 'The Sopranos',
@@ -17,7 +17,7 @@ export const getseries = () => [
         year: 1999,
         poster: 'https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg',
         watched: true,
-        score: 5,
+        score: 3,
         emmies: 21,
     },
     {
@@ -36,8 +36,8 @@ export const getseries = () => [
         creator: 'Matthew Weiner',
         year: 2007,
         poster: 'https://pics.filmaffinity.com/Mad_Men_Serie_de_TV-351490728-large.jpg',
-        watched: true,
-        score: 5,
+        watched: false,
+        score: 0,
         emmies: 116,
     },
     {
@@ -55,10 +55,9 @@ export const getseries = () => [
         name: 'Atypical',
         creator: 'Robia Rashid',
         year: 2017,
-        poster: 'https://www.cine.com/media/series/2711.jpg',
+        poster: 'https://i.pinimg.com/originals/52/40/cb/5240cb00e3ff37c8fcd8e4f23c999dd2.jpg',
         watched: false,
         score: 0,
         emmies: 0,
     },
 ];
-
