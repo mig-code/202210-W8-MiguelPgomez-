@@ -1,6 +1,14 @@
+import { App } from "./components/app/app.js";
+
 export const foo = 'foo';
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('LOAD DOM');
+         try {
+             new App();
+         } catch (error) {
+             console.log("Error: ", error);
+         }
     });
 })();
+
+
