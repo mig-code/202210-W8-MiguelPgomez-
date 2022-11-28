@@ -36,8 +36,8 @@ export const moviesData = [
         creator: 'Matthew Weiner',
         year: 2007,
         poster: 'https://pics.filmaffinity.com/Mad_Men_Serie_de_TV-351490728-large.jpg',
-        watched: true,
-        score: 1,
+        watched: false,
+        score: 0,
         emmies: 116,
     },
     {

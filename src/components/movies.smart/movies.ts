@@ -14,6 +14,19 @@ export class Movies extends Component {
             });
         });
     }
+    addStarsListeners() {
+        const unWatchedItems = document.querySelectorAll(
+            '.series-pending .score'
+        );
+        unWatchedItems.forEach((item, index) => {
+            const stars = item.querySelectorAll('.score__star');
+            stars.forEach((star, starIndex) => {
+                star.addEventListener('click', () => {
+                    this.handleRating(index, starIndex + 1);
+                });
+            })
+        });
+    }
 
     constructor(private selector: string) {
         super();
@@ -26,6 +39,7 @@ export class Movies extends Component {
         new MoviesList('.series-pending', filterByWatched(this.movies, false));
         new MoviesList('.series-watched', filterByWatched(this.movies, true));
         this.addDeleteListeners();
+        this.addStarsListeners();
     }
     handleDelete(index: number) {
         console.log(index);
@@ -34,6 +48,19 @@ export class Movies extends Component {
             (movie) => movie.name !== getFilmIdFromDom(index)
         );
 
+        this.manageComponent(this.selector);
+    }
+    handleRating(index: number, rating: number) {
+        console.log(index);
+        console.log(rating);
+        this.movies.map((movie) => {
+            if (movie.name === getFilmIdFromDom(index)) {
+                movie.score = rating;
+                movie.watched = true;
+                console.log("changed");
+            }
+        }
+        );
         this.manageComponent(this.selector);
     }
 

@@ -77,9 +77,14 @@ img {
 .score {
     display: flex;
 }
+.score__star .far:hover{
+    cursor:pointer;
+    color: #3b2f93;
+}
 .series-list--watched .icon--score {
     cursor: pointer;
 }
+
 .ranking-list {
     display: flex;
     justify-content: space-between;
