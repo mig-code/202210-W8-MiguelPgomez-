@@ -1,8 +1,10 @@
+import { Home } from "../../pages/home/home.js";
+
 export class App {
     constructor() {
         try {
             console.log('Loaded App');
-            // Here i will load HopePage
+            new Home('.root');
         } catch (error) {
             console.log(error);
         }
