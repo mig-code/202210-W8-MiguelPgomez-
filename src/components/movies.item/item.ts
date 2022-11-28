@@ -26,7 +26,7 @@ export class MoviesItem extends Component {
                   alt="${this.movie.name}"
                 />
                 <h4 class="serie__title">${this.movie.name}</h4>
-                <p class="serie__info">${this.movie.creator}(1999)</p>
+                <p class="serie__info">${this.movie.creator} ${this.movie.year}</p>
                 <ul class="score">
                   <li class="score__star">
                     <i class="icon--score fas fa-star" title="1/5"></i>

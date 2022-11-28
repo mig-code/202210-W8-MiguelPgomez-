@@ -9,7 +9,7 @@ export type tvShowsType = {
     emmies: number;
 };
 
-export const getseries = () => [
+export const moviesData = [
     {
         id: 1,
         name: 'The Sopranos',

@@ -1,24 +1,18 @@
-import { getseries, tvShowsType } from '../../models/tvshows.js';
+import { tvShowsType } from '../../models/tvshows.js';
 import { Component } from '../component/component.js';
 import { MoviesItem } from '../movies.item/item.js';
 
 export class MoviesList extends Component {
-    movies: Array<tvShowsType>;
-
-    constructor(private selector: string,) {
+    constructor(private selector: string, private movies: Array<tvShowsType>) {
         super();
-        this.movies = getseries();
-      
+        this.movies = movies;
         this.manageComponent(selector);
-        console.log(this.movies);
-        console.log(selector)
-        
     }
     manageComponent(selector: string) {
         this.template = this.createTemplate();
         this.render(selector);
         this.movies.map((movie) => {
-            new MoviesItem('.series-list',selector, movie);
+            new MoviesItem('.series-list', selector, movie);
         });
     }
 
