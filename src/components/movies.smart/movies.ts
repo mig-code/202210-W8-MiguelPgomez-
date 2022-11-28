@@ -5,6 +5,7 @@ import { MoviesList } from '../movies.list/movies.list.js';
 
 export class Movies extends Component {
     movies: Array<tvShowsType>;
+
     addDeleteListeners() {
         const deleteButtons = document.querySelectorAll('.icon--delete');
         deleteButtons.forEach((button, index) => {
@@ -32,7 +33,7 @@ export class Movies extends Component {
         this.movies = this.movies.filter(
             (movie) => movie.name !== getFilmIdFromDom(index)
         );
-        console.log('DELETING');
+
         this.manageComponent(this.selector);
     }
 
