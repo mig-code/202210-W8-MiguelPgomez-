@@ -1,7 +1,7 @@
 {
-    "name": "ts-week8",
+    "name": "ts-challenge-week8",
     "version": "1.0.0",
-    "description": "Componentes en TS",
+    "description": "Tv Series components",
     "main": "index.js",
     "type": "module",
     "scripts": {
