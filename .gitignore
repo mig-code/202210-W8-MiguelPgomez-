@@ -1,5 +1,6 @@
 .vscode/
 dist/**/*.js
+dist/mocks/**/*.html
 
 # Logs
 logs

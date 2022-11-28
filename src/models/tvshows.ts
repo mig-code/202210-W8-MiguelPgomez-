@@ -5,7 +5,7 @@ export type tvShowsType = {
     year: number;
     poster: string;
     watched: boolean;
-    rating: number;
+    score: number;
     emmies: number;
 };
 
