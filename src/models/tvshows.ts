@@ -61,4 +61,3 @@ export const moviesData = [
         emmies: 0,
     },
 ];
-

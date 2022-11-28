@@ -1,41 +1,47 @@
-import { filterByWatched } from '../../helpers/functions.js';
+import { filterByWatched, getFilmIdFromDom } from '../../helpers/functions.js';
 import { moviesData, tvShowsType } from '../../models/tvshows.js';
 import { Component } from '../component/component.js';
 import { MoviesList } from '../movies.list/movies.list.js';
 
 export class Movies extends Component {
     movies: Array<tvShowsType>;
-    addDeleteListener() {
+    addDeleteListeners() {
         const deleteButtons = document.querySelectorAll('.icon--delete');
-        deleteButtons.forEach((button) => {
+        deleteButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
-                console.log('delete');
+                this.handleDelete(index);
             });
         });
     }
 
-    constructor(selector: string) {
+    constructor(private selector: string) {
         super();
         this.movies = moviesData;
         this.manageComponent(selector);
-        new MoviesList('.series-pending', filterByWatched(this.movies, false));
-        new MoviesList('.series-watched', filterByWatched(this.movies, true));
-        this.addDeleteListener();
     }
     manageComponent(selector: string) {
         this.template = this.createTemplate();
         this.render(selector);
+        new MoviesList('.series-pending', filterByWatched(this.movies, false));
+        new MoviesList('.series-watched', filterByWatched(this.movies, true));
+        this.addDeleteListeners();
     }
-    hadleDelete() {
-        console.log('delete');
+    handleDelete(index: number) {
+        console.log(index);
+        console.log(getFilmIdFromDom(index));
+        this.movies = this.movies.filter(
+            (movie) => movie.name !== getFilmIdFromDom(index)
+        );
+        console.log('DELETING');
+        this.manageComponent(this.selector);
     }
 
     createTemplate() {
         return `
         <section class="series">
             <h2 class="section-title">Series list</h2>
-            <section class="series-pending">PENDING</section>
-            <section class="series-watched">WATCH</section>
+            <section class="series-pending"></section>
+            <section class="series-watched"></section>
         </section>
         `;
     }
