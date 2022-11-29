@@ -2,7 +2,7 @@ export abstract class Component {
     protected template!: string;
     protected element!: Element;
 
-   protected render(selector: string) {
+    protected render(selector: string) {
         const e = document.querySelector(selector);
         if (e === null) {
             return;
@@ -19,7 +19,7 @@ export abstract class Component {
         this.element = e;
         this.element.innerHTML += this.template;
     }
-   protected outRender(selector: string) {
+    protected outRender(selector: string) {
         const e = document.querySelector(selector);
         if (e === null) {
             return;
