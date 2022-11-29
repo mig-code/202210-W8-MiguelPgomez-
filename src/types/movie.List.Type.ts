@@ -7,5 +7,4 @@ export type MovieListOptionType = {
     title: string;
     selector: string;
     filterdMovies: Array<tvShowsType>;
-    infoTemplate: string;
 };
