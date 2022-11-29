@@ -1,12 +1,18 @@
-import { titleMovieLIst } from '../../helpers/functions.js';
 import { tvShowsType } from '../../models/tvshows.js';
 import { Component } from '../component/component.js';
 import { MoviesItem } from '../movies.item/item.js';
 
 export class MoviesList extends Component {
-    constructor(private selector: string, private movies: Array<tvShowsType>) {
+    constructor(
+        private title: string,
+        private selector: string,
+        private movies: Array<tvShowsType>,
+        private info: string
+    ) {
         super();
+        this.title = title;
         this.movies = movies;
+        this.info = info;
         this.manageComponent(selector);
     }
     manageComponent(selector: string) {
@@ -19,18 +25,10 @@ export class MoviesList extends Component {
 
     createTemplate() {
         return `
-        <h3 class="subsection-title">${titleMovieLIst(
-            this.selector
-        )} Series</h3>
-        ${
-            this.movies.length > 0
-            ? `<p class="info">You have ${this.movies.length} series pending to watch</p>`
-            : `NEED TO FIX THIS`
-        }
-        
+        <h3 class="subsection-title">${this.title} Series</h3>
+            <p class="info">${this.info}</p>
         <ul class="series-list">
-        </ul>
-          
+        </ul>   
         `;
     }
 }
