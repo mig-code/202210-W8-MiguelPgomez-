@@ -10,7 +10,6 @@ export class MoviesItem extends Component {
         this.movie=movie;
         this.section=section;
         this.manageComponent();
-        console.log('load ITEM');
       
     }
     manageComponent() {

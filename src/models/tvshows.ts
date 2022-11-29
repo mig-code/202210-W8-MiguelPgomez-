@@ -17,7 +17,7 @@ export const moviesData = [
         year: 1999,
         poster: 'https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg',
         watched: true,
-        score: 3,
+        score: 5,
         emmies: 21,
     },
     {
@@ -36,8 +36,8 @@ export const moviesData = [
         creator: 'Matthew Weiner',
         year: 2007,
         poster: 'https://pics.filmaffinity.com/Mad_Men_Serie_de_TV-351490728-large.jpg',
-        watched: false,
-        score: 0,
+        watched: true,
+        score: 5,
         emmies: 116,
     },
     {
