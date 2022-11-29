@@ -34,7 +34,7 @@ export class MoviesList extends Component {
             return `You already have not watched any serie`;
         }
         if (this.movies.length > 0) {
-            return `You have ${this.movies.length}  series pending to watch`;
+            return `You have watched ${this.movies.length} series`;
         }
         return '';
     }
@@ -43,7 +43,7 @@ export class MoviesList extends Component {
             return `Congrats! You've watched all your series`;
         }
         if (this.movies.length > 0) {
-            return `You have ${this.movies.length}  series pending to watch`;
+            return `You have ${this.movies.length} series pending to watch`;
         }
         return '';
     }
