@@ -29,14 +29,37 @@ export class Movies extends Component {
             },
         ];
         this.movieListOptions.forEach((option) => {
-            new MoviesList(option.title, option.selector, option.filterdMovies);
+            new MoviesList(
+                option.title,
+                option.selector,
+                option.filterdMovies,
+                this.movies,
+                this.handleDeleteInItem.bind(this),
+                this.handleRatingInItem.bind(this)
+            );
         });
-        this.addDeleteListeners();
-        this.addStarsListeners();
+        // this.addDeleteListeners();
+        // this.addStarsListeners();
 
         //Old way
         // new MoviesList('.series-pending', filterByWatched(this.movies, false));
         // new MoviesList('.series-watched', filterByWatched(this.movies, true));
+    }
+    handleDeleteInItem(event: string) {
+        this.movies = this.movies.filter((movie) => movie.name !== event);
+        this.manageComponent(this.selector);
+    }
+    handleRatingInItem(rating: number, name: string) {
+        {
+            this.movies.map((movie) => {
+                if (movie.name === name) {
+                    movie.score = rating;
+                    movie.watched = true;
+                }
+            });
+
+            this.manageComponent(this.selector);
+        }
     }
 
     handleDelete(index: number) {
@@ -45,14 +68,14 @@ export class Movies extends Component {
         );
         this.manageComponent(this.selector);
     }
-    addDeleteListeners() {
-        const deleteButtons = document.querySelectorAll('.icon--delete');
-        deleteButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                this.handleDelete(index);
-            });
-        });
-    }
+    // addDeleteListeners() {
+    //     const deleteButtons = document.querySelectorAll('.icon--delete');
+    //     deleteButtons.forEach((button, index) => {
+    //         button.addEventListener('click', () => {
+    //             this.handleDelete(index);
+    //         });
+    //     });
+    // }
 
     handleRating(index: number, rating: number) {
         this.movies.map((movie) => {
@@ -64,19 +87,19 @@ export class Movies extends Component {
 
         this.manageComponent(this.selector);
     }
-    addStarsListeners() {
-        const unWatchedItems = document.querySelectorAll(
-            '.series-pending .score'
-        );
-        unWatchedItems.forEach((item, index) => {
-            const stars = item.querySelectorAll('.score__star');
-            stars.forEach((star, starIndex) => {
-                star.addEventListener('click', () => {
-                    this.handleRating(index, starIndex + 1);
-                });
-            });
-        });
-    }
+    // addStarsListeners() {
+    //     const unWatchedItems = document.querySelectorAll(
+    //         '.series-pending .score'
+    //     );
+    //     unWatchedItems.forEach((item, index) => {
+    //         const stars = item.querySelectorAll('.score__star');
+    //         stars.forEach((star, starIndex) => {
+    //             star.addEventListener('click', () => {
+    //                 this.handleRating(index, starIndex + 1);
+    //             });
+    //         });
+    //     });
+    // }
 
     createTemplate() {
         return `

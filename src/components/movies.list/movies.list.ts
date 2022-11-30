@@ -7,12 +7,18 @@ export class MoviesList extends Component {
     constructor(
         private title: string,
         private selector: string,
-        private movies: Array<tvShowsType>
+        private movies: Array<tvShowsType>,
+        private allMovies: Array<tvShowsType>,
+        private handleDelete: (event: string) => void,
+        private handleRating: (rating: number, name:string) => void
     ) {
         super();
         this.title = title;
         this.selector = selector;
         this.movies = movies;
+        this.allMovies = allMovies;
+        this.handleDelete = handleDelete;
+        this.handleRating;
 
         this.manageComponent(selector);
     }
@@ -25,9 +31,19 @@ export class MoviesList extends Component {
         }
         this.template = this.createTemplate();
         this.render(selector);
-        this.movies.map((movie) => {
-            new MoviesItem('.series-list', selector, movie);
+        this.movies.map((movie, index) => {
+            new MoviesItem(
+                '.series-list',
+                selector,
+                movie,
+                index,
+                this.movies,
+                this.allMovies,
+                this.handleDelete.bind(this),
+                this.handleRating.bind(this)
+            );
         });
+        console.log(this.allMovies);
     }
     generateInfoTemplateWatched() {
         if (this.movies.every((movie) => movie.watched === false)) {
