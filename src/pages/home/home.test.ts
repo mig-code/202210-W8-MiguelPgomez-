@@ -1,10 +1,6 @@
 import { screen } from '@testing-library/dom';
-// adds special assertions like toHaveTextContent
-
 import '@testing-library/jest-dom';
 import { Home } from './home.js';
-
-// import { List } from '../../components/todo.list/list.js';
 
 describe('Given "Home" component', () => {
     document.body.innerHTML = ` <div class="container">
