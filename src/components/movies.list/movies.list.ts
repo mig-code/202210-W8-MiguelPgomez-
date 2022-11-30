@@ -7,13 +7,11 @@ export class MoviesList extends Component {
     constructor(
         private title: string,
         private selector: string,
-        private movies: Array<tvShowsType>
+        private movies: Array<tvShowsType>,
+        private handleDelete: (event: string) => void,
+        private handleRating: (rating: number, name: string) => void
     ) {
         super();
-        this.title = title;
-        this.selector = selector;
-        this.movies = movies;
-
         this.manageComponent(selector);
     }
     manageComponent(selector: string) {
@@ -26,17 +24,15 @@ export class MoviesList extends Component {
         this.template = this.createTemplate();
         this.render(selector);
         this.movies.map((movie) => {
-            new MoviesItem('.series-list', selector, movie);
+            new MoviesItem(
+                '.series-list',
+                selector,
+                movie,
+                this.movies,
+                this.handleDelete.bind(this),
+                this.handleRating.bind(this)
+            );
         });
-    }
-    generateInfoTemplateWatched() {
-        if (this.movies.every((movie) => movie.watched === false)) {
-            return `You already have not watched any serie`;
-        }
-        if (this.movies.length > 0) {
-            return `You have watched ${this.movies.length} series`;
-        }
-        return '';
     }
     generateInfoTemplatePending() {
         if (this.movies.every((movie) => movie.watched === true)) {
@@ -44,6 +40,16 @@ export class MoviesList extends Component {
         }
         if (this.movies.length > 0) {
             return `You have ${this.movies.length} series pending to watch`;
+        }
+        return '';
+    }
+
+    generateInfoTemplateWatched() {
+        if (this.movies.every((movie) => movie.watched === false)) {
+            return `You already have not watched any serie`;
+        }
+        if (this.movies.length > 0) {
+            return `You have watched ${this.movies.length} series`;
         }
         return '';
     }

@@ -1,4 +1,4 @@
-import { filterByWatched, getFilmIdFromDom } from '../../helpers/functions.js';
+import { filterByWatched } from '../../helpers/functions.js';
 import { moviesData, tvShowsType } from '../../models/tvshows.js';
 import { MovieListOptionType } from '../../types/movie.List.Type.js';
 import { Component } from '../component/component.js';
@@ -29,54 +29,72 @@ export class Movies extends Component {
             },
         ];
         this.movieListOptions.forEach((option) => {
-            new MoviesList(option.title, option.selector, option.filterdMovies);
+            new MoviesList(
+                option.title,
+                option.selector,
+                option.filterdMovies,
+                // this.movies,
+                this.handleDeleteInItem.bind(this),
+                this.handleRatingInItem.bind(this)
+            );
         });
-        this.addDeleteListeners();
-        this.addStarsListeners();
-
-        //Old way
-        // new MoviesList('.series-pending', filterByWatched(this.movies, false));
-        // new MoviesList('.series-watched', filterByWatched(this.movies, true));
     }
-
-    handleDelete(index: number) {
-        this.movies = this.movies.filter(
-            (movie) => movie.name !== getFilmIdFromDom(index)
-        );
+    handleDeleteInItem(event: string) {
+        this.movies = this.movies.filter((movie) => movie.name !== event);
         this.manageComponent(this.selector);
     }
-    addDeleteListeners() {
-        const deleteButtons = document.querySelectorAll('.icon--delete');
-        deleteButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                this.handleDelete(index);
+    handleRatingInItem(rating: number, name: string) {
+        {
+            this.movies.map((movie) => {
+                if (movie.name === name) {
+                    movie.score = rating;
+                    movie.watched = true;
+                }
             });
-        });
+            this.manageComponent(this.selector);
+        }
     }
 
-    handleRating(index: number, rating: number) {
-        this.movies.map((movie) => {
-            if (movie.name === getFilmIdFromDom(index)) {
-                movie.score = rating;
-                movie.watched = true;
-            }
-        });
+    // OLD WAY TO HANDLE DELETE AND RATING IN THIS COMPONENT
 
-        this.manageComponent(this.selector);
-    }
-    addStarsListeners() {
-        const unWatchedItems = document.querySelectorAll(
-            '.series-pending .score'
-        );
-        unWatchedItems.forEach((item, index) => {
-            const stars = item.querySelectorAll('.score__star');
-            stars.forEach((star, starIndex) => {
-                star.addEventListener('click', () => {
-                    this.handleRating(index, starIndex + 1);
-                });
-            });
-        });
-    }
+    // handleDelete(index: number) {
+    //     this.movies = this.movies.filter(
+    //         (movie) => movie.name !== getFilmIdFromDom(index)
+    //     );
+    //     this.manageComponent(this.selector);
+    // }
+    // addDeleteListeners() {
+    //     const deleteButtons = document.querySelectorAll('.icon--delete');
+    //     deleteButtons.forEach((button, index) => {
+    //         button.addEventListener('click', () => {
+    //             this.handleDelete(index);
+    //         });
+    //     });
+    // }
+
+    // handleRating(index: number, rating: number) {
+    //     this.movies.map((movie) => {
+    //         if (movie.name === getFilmIdFromDom(index)) {
+    //             movie.score = rating;
+    //             movie.watched = true;
+    //         }
+    //     });
+
+    //     this.manageComponent(this.selector);
+    // }
+    // addStarsListeners() {
+    //     const unWatchedItems = document.querySelectorAll(
+    //         '.series-pending .score'
+    //     );
+    //     unWatchedItems.forEach((item, index) => {
+    //         const stars = item.querySelectorAll('.score__star');
+    //         stars.forEach((star, starIndex) => {
+    //             star.addEventListener('click', () => {
+    //                 this.handleRating(index, starIndex + 1);
+    //             });
+    //         });
+    //     });
+    // }
 
     createTemplate() {
         return `
