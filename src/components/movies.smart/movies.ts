@@ -1,4 +1,4 @@
-import { filterByWatched, getFilmIdFromDom } from '../../helpers/functions.js';
+import { filterByWatched } from '../../helpers/functions.js';
 import { moviesData, tvShowsType } from '../../models/tvshows.js';
 import { MovieListOptionType } from '../../types/movie.List.Type.js';
 import { Component } from '../component/component.js';
@@ -33,17 +33,11 @@ export class Movies extends Component {
                 option.title,
                 option.selector,
                 option.filterdMovies,
-                this.movies,
+                // this.movies,
                 this.handleDeleteInItem.bind(this),
                 this.handleRatingInItem.bind(this)
             );
         });
-        // this.addDeleteListeners();
-        // this.addStarsListeners();
-
-        //Old way
-        // new MoviesList('.series-pending', filterByWatched(this.movies, false));
-        // new MoviesList('.series-watched', filterByWatched(this.movies, true));
     }
     handleDeleteInItem(event: string) {
         this.movies = this.movies.filter((movie) => movie.name !== event);
@@ -57,17 +51,18 @@ export class Movies extends Component {
                     movie.watched = true;
                 }
             });
-
             this.manageComponent(this.selector);
         }
     }
 
-    handleDelete(index: number) {
-        this.movies = this.movies.filter(
-            (movie) => movie.name !== getFilmIdFromDom(index)
-        );
-        this.manageComponent(this.selector);
-    }
+    // OLD WAY TO HANDLE DELETE AND RATING IN THIS COMPONENT
+
+    // handleDelete(index: number) {
+    //     this.movies = this.movies.filter(
+    //         (movie) => movie.name !== getFilmIdFromDom(index)
+    //     );
+    //     this.manageComponent(this.selector);
+    // }
     // addDeleteListeners() {
     //     const deleteButtons = document.querySelectorAll('.icon--delete');
     //     deleteButtons.forEach((button, index) => {
@@ -77,16 +72,16 @@ export class Movies extends Component {
     //     });
     // }
 
-    handleRating(index: number, rating: number) {
-        this.movies.map((movie) => {
-            if (movie.name === getFilmIdFromDom(index)) {
-                movie.score = rating;
-                movie.watched = true;
-            }
-        });
+    // handleRating(index: number, rating: number) {
+    //     this.movies.map((movie) => {
+    //         if (movie.name === getFilmIdFromDom(index)) {
+    //             movie.score = rating;
+    //             movie.watched = true;
+    //         }
+    //     });
 
-        this.manageComponent(this.selector);
-    }
+    //     this.manageComponent(this.selector);
+    // }
     // addStarsListeners() {
     //     const unWatchedItems = document.querySelectorAll(
     //         '.series-pending .score'
