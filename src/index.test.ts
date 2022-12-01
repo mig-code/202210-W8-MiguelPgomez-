@@ -7,7 +7,12 @@ describe('Given "Home" component', () => {
     describe('When Dom is loaded', () => {
         const ContentLoad = new App();
 
-        const elements = [screen.getByRole('heading', { name: 'My Series' })];
+        const elements = [
+            screen.getByRole('heading', { name: 'My Series' }),
+            screen.getByRole('heading', { name: 'Pending Series' }),
+            screen.getByText('You have 2 series pending to watch'),
+            screen.getByText('You have watched 3 series'),
+        ];
         describe.each(elements)(
             'When it is call with a DOM implementation',
             (element: HTMLElement) => {
