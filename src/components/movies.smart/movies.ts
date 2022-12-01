@@ -33,7 +33,6 @@ export class Movies extends Component {
                 option.title,
                 option.selector,
                 option.filterdMovies,
-                // this.movies,
                 this.handleDeleteInItem.bind(this),
                 this.handleRatingInItem.bind(this)
             );
