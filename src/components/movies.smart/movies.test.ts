@@ -1,14 +1,11 @@
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import {
-    tvShowsMockAll
-} from '../../mocks/tvShowsMocks.js';
+import { tvShowsMockAll } from '../../mocks/tvShowsMocks.js';
 
 import { Movies } from './movies.js';
 
 describe('Given "Movies" component', () => {
-
     describe('When it is instantiated with a valid selector .main', () => {
         document.body.innerHTML = `
         <section class="series">
@@ -45,5 +42,14 @@ describe('Given "Movies" component', () => {
         test('Then we should to be able to instantiate it', () => {
             expect(MoviesComponent).toBeInstanceOf(Movies);
         });
+        test('Then pending series should be two', () => {
+            const container = document.querySelectorAll('.series-pending .serie');
+            expect(container).toHaveLength(2);
+        });
+        test('Then watched series should be three', () => {
+            const container = document.querySelectorAll('.series-watched .serie');
+            expect(container).toHaveLength(3);
+        }
+        );
     });
 });
